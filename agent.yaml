@@ -1,0 +1,21 @@
+spec_version: "0.1.0"
+name: "superpowers"
+version: "4.0.0"
+description: "Agentic superpowers framework: structured discipline, skill invocation priority, TDD, subagent-driven development, and verification."
+author: "Jesse Vincent (obra) / Superpowers Contributors"
+license: "MIT"
+metadata:
+  domain: "Developer Tools / Autonomous Agent Discipline, TDD, Skill Invocation & Worktrees"
+  category: "Developer Tools"
+  framework: "Superpowers / Multi-Agent Harness (Claude, Cursor, Devin, Gemini)"
+  language: "Markdown"
+skills:
+  - "using-superpowers"
+  - "brainstorming"
+  - "test-driven-development"
+  - "systematic-debugging"
+tools:
+  - "skill-registry-finder"
+  - "subagent-dispatcher"
+  - "git-worktree-manager"
+  - "plan-verifier"

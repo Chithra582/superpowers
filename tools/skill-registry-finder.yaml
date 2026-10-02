@@ -1,0 +1,14 @@
+name: skill-registry-finder
+description: Scans available skills and returns applicable process or implementation skills for a given task prompt.
+input_schema:
+  type: object
+  properties:
+    task_prompt:
+      type: string
+      description: The user request or task description to match against skills.
+    category_filter:
+      type: string
+      description: Optional filter ('process', 'implementation', 'all').
+      default: "all"
+  required:
+    - task_prompt

@@ -1,0 +1,16 @@
+name: git-worktree-manager
+description: Creates, lists, or removes isolated git worktrees for feature development and subagent sandboxing.
+input_schema:
+  type: object
+  properties:
+    action:
+      type: string
+      description: Worktree operation ('create', 'remove', 'list').
+    branch_name:
+      type: string
+      description: Name of the git branch to bind to the worktree.
+    worktree_path:
+      type: string
+      description: Target directory path for the worktree.
+  required:
+    - action

@@ -1,0 +1,23 @@
+name: subagent-dispatcher
+description: Dispatches independent tasks to isolated parallel or sequential subagents with scoped requirements.
+input_schema:
+  type: object
+  properties:
+    tasks:
+      type: array
+      items:
+        type: object
+        properties:
+          task_id:
+            type: string
+          description:
+            type: string
+          isolated_path:
+            type: string
+      description: List of independent tasks to dispatch.
+    mode:
+      type: string
+      description: Execution mode ('parallel', 'sequential').
+      default: "parallel"
+  required:
+    - tasks
