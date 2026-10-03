@@ -1,8 +1,8 @@
 # EXPLAINABILITY.md
 
-This document explains the internal mechanisms, data lineage, operational boundaries, and governance framework of **# Explainability & Decision Transparency Report** (`superpowers`) in accordance with the **OpenGAP v0.1.0** specification for the **HiDevs GitAgent Passport** clearance pipeline.
+This document explains the internal mechanisms, data lineage, operational boundaries, and governance framework of **Superpowers Agent** (`superpowers`) in accordance with the **OpenGAP v0.1.0** specification for the **HiDevs GitAgent Passport** clearance pipeline.
 
-> **Agent Name:** # Explainability & Decision Transparency Report (`superpowers`)  
+> **Agent Name:** Superpowers Agent (`superpowers`)  
 > **Specification:** OpenGAP v0.1.0  
 > **Category / Domain:** Developer Tools / Autonomous Agent Discipline, TDD, Skill Invocation & Worktrees  
 > **Compliance Standard:** OpenGAP Checkpoint 2 (Explainability & Decision Governance), OWASP LLM Top 10, MITRE ATLAS  
@@ -11,7 +11,7 @@ This document explains the internal mechanisms, data lineage, operational bounda
 
 ## How the Agent Decides
 
-# Explainability & Decision Transparency Report operates via a deterministic five-stage operational pipeline.
+The agent operates via a strictly disciplined, 5-stage execution pipeline enforcing skill invocation before action.
 
 ### 1. Decision Architecture
 
@@ -52,48 +52,48 @@ The runtime intake, state classification, evaluation, and execution tracking ope
 
 ### 2. Decision Logic & Routing Formulations
 
-& Subagent Task Dispatch]                             |
-|     --> Decompose into testable tasks; dispatch parallel or sequential subagents   |
-+-----------------------------------------+-----------------------------------------+
-                                          |
-                                          v
-+-----------------------------------------------------------------------------------+
-|  [Stage 4: Test-Driven Development & Systematic Debugging]                        |
-|     --> Write failing tests first; implement minimal fixes; isolate root causes   |
-+-----------------------------------------+-----------------------------------------+
-                                          |
-                                          v
-+-----------------------------------------------------------------------------------+
-|  [Stage 5: Evidence-Based Verification & Branch Finalization]                     |
-|     --> Execute test suites, verify clean output traces, & finalize branch merge   |
-+-----------------------------------------------------------------------------------+
-```
+Skill invocation priority across candidate skills $k$ is computed using a deterministic relevance formulation:
+
+$$S_{\text{skill}}(k) = w_1 \cdot \text{KeywordMatch}(q, k) + w_2 \cdot \text{ProcessWeight}(k) + w_3 \cdot \text{ContextRelevance}(k)$$
+
+Where:
+- $w_1 = 0.40$: Semantic keyword alignment between task query $q$ and skill triggers.
+- $w_2 = 0.40$: Category weight prioritizing process skills (`brainstorming`, `systematic-debugging`) over implementation skills.
+- $w_3 = 0.20$: Historical workflow state relevance (e.g. `finishing-a-development-branch` when tests pass).
+
+Subagent task parallelization potential for a set of tasks $T$ is evaluated as:
+
+$$\Phi(T) = \prod_{i \neq j} \left(1 - \text{SharedState}(t_i, t_j)\right) \cdot \mathbb{I}(\text{Deps}(t_i) \cap \text{Outputs}(t_j) = \emptyset)$$
+
+Where tasks are dispatched in parallel only when $\Phi(T) = 1.0$.
 
 ### 3. Thresholding & Refusal Decision Criteria
 
-# Explainability & Decision Transparency Report enforces strict operational boundaries and deterministic refusal thresholds:
-- **Refusal on ERR_UNVERIFIED_COMPLETION_ASSERTION**: **Premature Completion Claim** halts execution with code `ERR_UNVERIFIED_COMPLETION_ASSERTION`.
-- **Refusal on ERR_MISSING_BRAINSTORMING_PHASE**: **Bypassing Brainstorming** halts execution with code `ERR_MISSING_BRAINSTORMING_PHASE`.
-- **Refusal on ERR_TDD_DISCIPLINE_VIOLATION**: **Implementation Without Test** halts execution with code `ERR_TDD_DISCIPLINE_VIOLATION`.
-- **Refusal on ERR_DIRTY_WORKTREE_DETECTED**: **Dirty Working Tree Merge** halts execution with code `ERR_DIRTY_WORKTREE_DETECTED`.
-- **Refusal on ERR_CYCLIC_SUBAGENT_DEADLOCK**: **Circular Subagent Dependency** halts execution with code `ERR_CYCLIC_SUBAGENT_DEADLOCK`.
+Superpowers Agent enforces strict operational boundaries and deterministic refusal thresholds:
+- **Refusal on ERR_UNVERIFIED_COMPLETION_ASSERTION**: Premature Completion Claim (Zero test evidence provided) halts execution with code `ERR_UNVERIFIED_COMPLETION_ASSERTION`.
+- **Refusal on ERR_MISSING_BRAINSTORMING_PHASE**: Bypassing Brainstorming (Creative work without spec) halts execution with code `ERR_MISSING_BRAINSTORMING_PHASE`.
+- **Refusal on ERR_TDD_DISCIPLINE_VIOLATION**: Implementation Without Test (Feature code before test) halts execution with code `ERR_TDD_DISCIPLINE_VIOLATION`.
+- **Refusal on ERR_DIRTY_WORKTREE_DETECTED**: Dirty Working Tree Merge (Uncommitted git changes) halts execution with code `ERR_DIRTY_WORKTREE_DETECTED`.
+- **Refusal on ERR_CYCLIC_SUBAGENT_DEADLOCK**: Circular Subagent Dependency (Cyclic dependency in DAG) halts execution with code `ERR_CYCLIC_SUBAGENT_DEADLOCK`.
 
 ### 4. Fallback Decision Mechanism
 
 Continuous operational stability is maintained through layered fault recovery:
+- **Tier 1 (Automated Regression Rollback)**: If a subagent introduces test regressions, changes are automatically reverted to the last passing git commit checkpoint.
+- **Tier 2 (Interactive Review Mode)**: If code review feedback reveals architectural ambiguities, the agent pauses execution to interview the human developer.
 - **Model Fallback Cascade**: High-level reasoning and synthesis default to `gemini-2.0-flash` with automatic failover to `gpt-4o` and `claude-3-5-sonnet`.
 
 ### 5. Human-in-the-Loop Governance
 
 Human operators retain sovereign authority over the multi-agent execution lifecycle:
-- **Consequential Action Sign-Off**: Sensitive and consequential actions require operator sign-off.
-- **Offline Ledger Auditing**: Operators can verify execution records and state transitions offline.
+- **Tier 3 (Human Developer Final SignOff)**: Merging a completed feature branch into `main` or `production` requires explicit human approval and interactive confirmation.
+- **Benchmark Trajectory Auditing**: Operators inspect evaluation traces, raw generation tokens, and container logs to verify scoring fidelity.
 
 ---
 
 ## The Data It Uses
 
-# Explainability & Decision Transparency Report operates under strict principles of data minimization, environment isolation, and privacy protection.
+Superpowers Agent operates under strict principles of data minimization, environment isolation, and privacy protection.
 
 ### 1. Ingested Input Data
 
@@ -104,7 +104,8 @@ The framework processes only operational data necessary to perform its functions
 
 ### 2. Configuration & Reference Data
 
-- **Configuration Schemas**: Declarative system policy files.
+- **Engineering Frameworks**: Test-Driven Development (TDD), Systematic Root-Cause Debugging.
+- **VCS Primitives**: Git worktrees, branch isolation, and commit hashes.
 
 ### 3. Base Model & Inference Lineage
 
@@ -122,7 +123,7 @@ The framework processes only operational data necessary to perform its functions
 
 ## Limitations
 
-Understanding the operational boundaries and technical constraints of # Explainability & Decision Transparency Report is essential for effective deployment.
+Understanding the operational boundaries and technical constraints of Superpowers Agent is essential for effective deployment.
 
 ### 1. Worktree Creation Overhead on Massive Repositories
 - **Limitation**: Initializing git worktrees on repositories with gigabytes of LFS assets can incur disk and setup latency.
